@@ -9,13 +9,20 @@ from modules.shared import opts
 EXTENSION_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(EXTENSION_PATH, "models")
 
+def clean_object_button_click(tab_index, init_img_with_mask, clean_up_init_img, clean_up_init_mask):
+    if tab_index == 0:
+        return clean_object(init_img_with_mask['image'],init_img_with_mask['mask'])
+    else:
+        return clean_object(clean_up_init_img,clean_up_init_mask)
 
-def clean_object_init_img_with_mask(init_img_with_mask):
-    return clean_object(init_img_with_mask['image'],init_img_with_mask['mask'])
 
+def clean_object_button_click_forge(tab_index, init_img, init_mask, clean_up_init_img, clean_up_init_mask):
+    if tab_index == 0:
+        return clean_object(init_img, init_mask)
+    else:
+        return clean_object(clean_up_init_img,clean_up_init_mask)
 
 def clean_object(image,mask):
-    
     Lama = LiteLama2()
     
     init_image = image

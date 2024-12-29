@@ -187,6 +187,7 @@
             const tabIndex = getCleanerTabIndex();
 
             gradioApp().querySelector('#tabs').querySelectorAll('button')[tabIndex - 1].click();
+            gradioApp().getElementById('mode_cleanup').querySelectorAll('button')[0].click();
 
             if (cleanupMaskTag) {
                 let buttons = gradioApp().querySelectorAll(`#tab_cleaner_tab button`);
@@ -219,7 +220,7 @@
                     .then(blob => {
                         let container = gradioApp().querySelector("#cleanup_img2maskimg");
 
-                        const imageElems = container.querySelectorAll('div[data-testid="image"]')
+                        const imageElems = container.querySelectorAll('div[data-testid="image"], .forge-container');
 
                         if (imageElems) {
                             const dt = new DataTransfer();
@@ -301,3 +302,8 @@
         }
     });
 })();
+
+function switch_to_cleaner() {
+    gradioApp().querySelector('#tabs').querySelector('#tab_cleaner_tab').querySelectorAll('button')[0].click()
+    gradioApp().getElementById('mode_cleanup').querySelectorAll('button')[0].click();
+}
